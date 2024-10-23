@@ -1,27 +1,21 @@
 <?php
 session_start();
 
-// Initialize error message
 $error = '';
 
-// Handle form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Get the username and password from the form
     $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
     $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
 
-    // Check if fields are empty
     if (empty($username) || empty($password)) {
         $error = 'Username and password are required.';
     } else {
-        // Load users from CSV
         if (file_exists('model/user.csv')) {
             $users = array_map('str_getcsv', file('model/user.csv'));
         } else {
             die("Error: users.csv file not found.");
         }
 
-        // Check for valid credentials
         $valid = false;
         foreach ($users as $user) {
             if ($user[0] === $username && $user[1] === $password) {
@@ -31,7 +25,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         if ($valid) {
-            // Redirect to the games display page
             header('Location: view/games.php');
             exit();
         } else {
