@@ -1,0 +1,44 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: black;
+    margin: 0;
+    padding: 20px;
+}
+
+p {
+    color: black;
+}
+
+h1 {
+    color: white;
+}
+
+h2 {
+    color: white;
+}
+
+.game-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.game-item {
+    background: wheat;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+}
+
+.game-image {
+    max-width: 10%; 
+    height: auto;  
+    display: block;
+    margin-top: 10px; 
+}
+form {
+    background: wheat;
+    margin: 0% auto;
+    padding: 15px;
+    border-radius: 50px;
+}
