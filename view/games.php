@@ -33,7 +33,7 @@ if (empty($games)) {
 </head>
 <body>
     <h1>Game List</h1>
-    <a href="../model/add_game.php"class="add-game-link">Add a New Game</a>
+<a href="../model/add_game.php" style="background-color: #28a745; color: white; padding: 10px 15px; border-radius: 5px; text-decoration: none;">Add a New Game</a>
     <ul class="game-list">
         <?php foreach ($games as $game): ?>
             <li class="game-item">

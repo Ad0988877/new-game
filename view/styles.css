@@ -42,17 +42,3 @@ form {
     padding: 15px;
     border-radius: 50px;
 }
-.add-game-link {
-    display: inline-block;
-    background-color: #28a745;
-    color: white;
-    padding: 10px 15px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-}
-
-.add-game-link:hover {
-    background-color: #218838;
-}
