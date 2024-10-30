@@ -4,19 +4,15 @@ $username = "root";
 $password = "";
 
 try {
-    // Establish a connection to the database
     $db = new PDO($dsn, $username, $password);
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
-    // If the connection fails, display an error message
     die("Error connecting to the database: " . $e->getMessage());
 }
 
-// Query to get games from the database
 $query = "SELECT * FROM game";
 $games = $db->query($query)->fetchAll(PDO::FETCH_ASSOC);
 
-// Check if the games array is empty
 if (empty($games)) {
     echo "No games found in the database.";
     exit;
@@ -33,7 +29,7 @@ if (empty($games)) {
 </head>
 <body>
     <h1>Game List</h1>
-<a href="../model/add_game.php" style="background-color: #28a745; color: white; padding: 10px 15px; border-radius: 5px; text-decoration: none;">Add a New Game</a>
+<a href="/model/add_game.php" style="background-color: #28a745; color: white; padding: 10px 15px; border-radius: 5px; text-decoration: none;">Add a New Game</a>
     <ul class="game-list">
         <?php foreach ($games as $game): ?>
             <li class="game-item">
