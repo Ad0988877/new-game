@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $image = $_FILES['image'];
 
     if ($image['error'] === UPLOAD_ERR_OK) {
-        $uploadDir = '../view/images/';  // Adjusted for proper path
+        $uploadDir = '../view/images/';  
         $uploadFile = $uploadDir . basename($image['name']);
         
         if (move_uploaded_file($image['tmp_name'], $uploadFile)) {
@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../view/styles.css"> <!-- Adjusted for correct path -->
+    <link rel="stylesheet" href="../view/styles.css"> 
     <title>Add Game</title>
 </head>
 <body>
