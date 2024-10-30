@@ -55,7 +55,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 </head>
 <body>
     <h1>Add a New Game</h1>
-    <a href="../view/games.php" class="add-game-link">Full Game list</a>
     <form method="post" enctype="multipart/form-data">
         <label for="name">Game Name:</label>
         <input type="text" name="name" id="name" required>
@@ -71,5 +70,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         <button type="submit">Add Game</button>
     </form>
+    <a href="../view/games.php" style="background-color: #28a745; color: white; padding: 10px 15px; border-radius: 5px; text-decoration: none;">Full Game list</a>
 </body>
 </html>
