@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $image = $_FILES['image'];
 
     if ($image['error'] === UPLOAD_ERR_OK) {
-        $uploadDir = '/view/images/'; 
+        $uploadDir = '../view/images/';  // Adjusted for proper path
         $uploadFile = $uploadDir . basename($image['name']);
         
         if (move_uploaded_file($image['tmp_name'], $uploadFile)) {
@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 ':name' => $name,
                 ':genre' => $genre,
                 ':platform' => $platform,
-                ':image' => $image['name'] 
+                ':image' => $image['name']
             ]);
             echo "Game added successfully!";
         } else {
@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/view/styles.css">
+    <link rel="stylesheet" href="../view/styles.css"> <!-- Adjusted for correct path -->
     <title>Add Game</title>
 </head>
 <body>
