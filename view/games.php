@@ -29,16 +29,20 @@ if (empty($games)) {
 </head>
 <body>
     <h1>Game List</h1>
-    <a href="../model/add_game.php" style="background-color: #28a745; color: white; padding: 10px 15px; border-radius: 5px; text-decoration: none;">Add a New Game</a>
-    <ul class="game-list">
-        <?php foreach ($games as $game): ?>
-            <li class="game-item">
-                <h3><?php echo $game['name']; ?></h3>
-                <p>Genre: <?php echo $game['genre']; ?></p>
-                <p>Platform: <?php echo $game['platform']; ?></p>
-                <img src="images/<?php echo $game['image']; ?>" alt="<?php echo $game['name']; ?>" class="game-image">
-            </li>
-        <?php endforeach; ?>
-    </ul>
+<a href="../model/add_game.php" style="background-color: #28a745; color: white; padding: 10px 15px; border-radius: 5px; text-decoration: none;">Add a New Game</a>
+
+<ul class="game-list" style="list-style-type: none; padding: 0;">
+    <?php foreach ($games as $game): ?>
+        <li class="game-item">
+            <h3><?php echo $game['name']; ?></h3>
+            <p>Genre: <?php echo $game['genre']; ?></p>
+            <p>Platform: <?php echo $game['platform']; ?></p>
+            <img src="images/<?php echo $game['image']; ?>" alt="<?php echo $game['name']; ?>" class="game-image">
+            <a href="../model/add_game.php?game_id=<?php echo isset($game['game_id']) ? urlencode($game['game_id']) : ''; ?>" style="background-color: #007bff; color: white; padding: 10px 15px; border-radius: 5px; text-decoration: none; margin-top: 10px;">Edit</a>
+        </li>
+    <?php endforeach; ?>
+</ul>
+
+
 </body>
 </html>
