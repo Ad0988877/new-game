@@ -22,7 +22,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $platform = $_POST['platform'];
     $image = $_FILES['image'];
     if ($image['error'] === UPLOAD_ERR_OK) {
+<<<<<<< HEAD
         $uploadDir = '../view/images/';
+=======
+        $uploadDir = '../view/images/';  
+>>>>>>> 60d0e87008bf28e2fb4ceeb41d847d73e225fa01
         $uploadFile = $uploadDir . basename($image['name']);
         if (move_uploaded_file($image['tmp_name'], $uploadFile)) {
             $newImage = $image['name'];
@@ -49,8 +53,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
     <link rel="stylesheet" href="../view/styles.css">
     <title><?php echo $game ? "Edit Game" : "Add Game"; ?></title>
+=======
+    <link rel="stylesheet" href="../view/styles.css"> 
+    <title>Add Game</title>
+>>>>>>> 60d0e87008bf28e2fb4ceeb41d847d73e225fa01
 </head>
 <body>
     <h1><?php echo $game ? "Edit Game" : "Add a New Game"; ?></h1>
