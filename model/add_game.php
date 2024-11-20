@@ -8,7 +8,11 @@ try {
 } catch (PDOException $e) {
     die("Error connecting to the database: " . $e->getMessage());
 }
+
 $game = null;
+$game_id = null;
+$newImage = null;
+
 if (isset($_GET['game_id'])) {
     $game_id = $_GET['game_id'];
     $query = "SELECT * FROM game WHERE game_id = :game_id";
@@ -16,11 +20,13 @@ if (isset($_GET['game_id'])) {
     $stmt->execute([':game_id' => $game_id]);
     $game = $stmt->fetch(PDO::FETCH_ASSOC);
 }
+
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $name = $_POST['name'];
     $genre = $_POST['genre'];
     $platform = $_POST['platform'];
     $image = $_FILES['image'];
+    
     if ($image['error'] === UPLOAD_ERR_OK) {
         $uploadDir = '../view/images/';
         $uploadFile = $uploadDir . basename($image['name']);
@@ -28,20 +34,34 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $newImage = $image['name'];
         } else {
             echo "Error uploading image.";
+            $newImage = null;
         }
     } else {
-        $newImage = $game['image'];
+        $newImage = $game ? $game['image'] : null;
     }
-    $qry = "UPDATE game SET name = :name, genre = :genre, platform = :platform, image = :image WHERE game_id = :game_id";
-    $stmt = $db->prepare($qry);
-    $stmt->execute([
-        ':name' => $name,
-        ':genre' => $genre,
-        ':platform' => $platform,
-        ':image' => $newImage,
-        ':game_id' => $game_id
-    ]);
-    echo "Game updated successfully!";
+
+    if ($game_id) {
+        $qry = "UPDATE game SET name = :name, genre = :genre, platform = :platform, image = :image WHERE game_id = :game_id";
+        $stmt = $db->prepare($qry);
+        $stmt->execute([
+            ':name' => $name,
+            ':genre' => $genre,
+            ':platform' => $platform,
+            ':image' => $newImage,
+            ':game_id' => $game_id
+        ]);
+        echo "Game updated successfully!";
+    } else {
+        $qry = "INSERT INTO game (name, genre, platform, image) VALUES (:name, :genre, :platform, :image)";
+        $stmt = $db->prepare($qry);
+        $stmt->execute([
+            ':name' => $name,
+            ':genre' => $genre,
+            ':platform' => $platform,
+            ':image' => $newImage
+        ]);
+        echo "New game added successfully!";
+    }
 }
 ?>
 <!DOCTYPE html>
